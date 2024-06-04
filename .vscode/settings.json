@@ -1,12 +1,13 @@
 {
   "files.associations": {
+    "*.ejs": "html",
+    "*.pchtml": "javascriptreact",
     "*.json.liquid": "json",
     "*.yaml.liquid": "yaml",
     "*.md.liquid": "markdown",
     "*.js.liquid": "liquid-javascript",
     "*.css.liquid": "liquid-css",
     "*.scss.liquid": "liquid-scss",
-    "*.pchtml": "javascriptreact",
     "string": "cpp",
     "array": "cpp",
     "atomic": "cpp",
@@ -52,7 +53,8 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "cinttypes": "cpp"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }
