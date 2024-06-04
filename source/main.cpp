@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "./utils/console.h"
-#include "./utils/todoManager.h"
+#include "./entities/todoManager.h"
 
 TodoManager *todoManager = new TodoManager();
 
