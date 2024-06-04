@@ -16,18 +16,21 @@ private:
     DialogueId id;
     std::string text;
     CharacterId speakerId;
+    // if defined, offer these responses
     std::vector<ResponseId> responses;
-    bool isEnd;
+    // if defined, continue to this dialogue after this one
+    DialogueId nextDialogueId;
 
 public:
     Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, std::vector<ResponseId> responses = std::vector<ResponseId>());
+    Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, DialogueId nextDialogueId);
 
     // accessors
     DialogueId getId();
     std::string getText();
     CharacterId getSpeakerId();
     std::vector<ResponseId> getResponseIds();
-    bool getIsEnd();
+    DialogueId getNextDialogueId();
 
     // operations
     bool operator==(Dialogue &other);

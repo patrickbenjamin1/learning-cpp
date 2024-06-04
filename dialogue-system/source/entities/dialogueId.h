@@ -11,6 +11,7 @@
 class DialogueId : public EntityId<DialogueId>
 {
 public:
+    DialogueId() : EntityId<DialogueId>(){};
     DialogueId(const std::string &id) : EntityId<DialogueId>(id) {}
 };
 

@@ -10,6 +10,7 @@
 class ResponseId : public EntityId<ResponseId>
 {
 public:
+    ResponseId() : EntityId<ResponseId>(){};
     ResponseId(const std::string &id) : EntityId<ResponseId>(id) {}
 };
 

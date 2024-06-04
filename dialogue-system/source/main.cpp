@@ -18,11 +18,12 @@ int main()
     // why is the formatter doing this.....
     auto *dialogues = new Collection<Dialogue, DialogueId>({
         Dialogue(DialogueId("1"), "Hello, how are you?", CharacterId("1"), std::vector<ResponseId>({ResponseId("1"), ResponseId("2")})),
-        Dialogue(DialogueId("2"), "Good", CharacterId("1")),
+        Dialogue(DialogueId("2"), "Good", CharacterId("1"), DialogueId("7")),
         Dialogue(DialogueId("3"), "I'm sorry to hear that - why is that?", CharacterId("1"), std::vector<ResponseId>({ResponseId("3"), ResponseId("4"), ResponseId("5")})),
         Dialogue(DialogueId("4"), "Oh, I'm sorry, I'll LEAVE THEN", CharacterId("1")),
         Dialogue(DialogueId("5"), "Fair enough", CharacterId("1")),
         Dialogue(DialogueId("6"), "Means brexit, correct", CharacterId("1")),
+        Dialogue(DialogueId("7"), "Anyway, I'll be on my way...", CharacterId("1")),
     });
 
     auto *responses = new Collection<Response, ResponseId>({

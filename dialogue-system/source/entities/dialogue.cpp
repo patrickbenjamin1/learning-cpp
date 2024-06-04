@@ -2,7 +2,12 @@
 #include "./character.h"
 
 Dialogue::Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, std::vector<ResponseId> responses)
-    : id(id), text(text), speakerId(speakerId), responses(responses)
+    : id(id), text(text), speakerId(speakerId), responses(responses), nextDialogueId(DialogueId())
+{
+}
+
+Dialogue::Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, DialogueId nextDialogueId)
+    : id(id), text(text), speakerId(speakerId), nextDialogueId(nextDialogueId), responses(std::vector<ResponseId>())
 {
 }
 
@@ -36,7 +41,7 @@ std::vector<ResponseId> Dialogue::getResponseIds()
     return this->responses;
 }
 
-bool Dialogue::getIsEnd()
+DialogueId Dialogue::getNextDialogueId()
 {
-    return this->responses.size() == 0;
+    return this->nextDialogueId;
 }

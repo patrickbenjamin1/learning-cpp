@@ -23,24 +23,33 @@ void DialogueManager::startDialogue(DialogueId dialogueId)
     this->controller.write("[" + character.getName() + "]: " + dialogue.getText());
     this->controller.write("");
 
-    if (dialogue.getIsEnd())
-    {
-        return;
-    }
-
     this->controller.wait(1000);
 
     std::vector<Response> responses = this->getResponses(dialogueId);
 
-    Response response = this->getUserResponse(responses);
+    if (responses.size() == 0)
+    {
+        DialogueId nextDialogueId = dialogue.getNextDialogueId();
 
-    this->controller.write("");
-    this->controller.write("[you]: " + response.getText());
-    this->controller.write("");
+        if (!nextDialogueId.isDefined())
+        {
+            return;
+        }
 
-    this->controller.wait(1000);
+        this->startDialogue(nextDialogueId);
+    }
+    else
+    {
+        Response response = this->getUserResponse(responses);
 
-    this->startDialogue(response.getDialogueId());
+        this->controller.write("");
+        this->controller.write("[you]: " + response.getText());
+        this->controller.write("");
+
+        this->controller.wait(1000);
+
+        this->startDialogue(response.getDialogueId());
+    }
 }
 
 std::vector<Response> DialogueManager::getResponses(DialogueId dialogueId)

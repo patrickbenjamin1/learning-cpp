@@ -9,10 +9,8 @@
 
 class CharacterId : public EntityId<CharacterId>
 {
-private:
-    std::string id;
-
 public:
+    CharacterId() : EntityId<CharacterId>(){};
     CharacterId(const std::string id) : EntityId<CharacterId>(id) {}
 };
 

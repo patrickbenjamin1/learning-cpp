@@ -8,12 +8,17 @@ template <typename Derived>
 class EntityId
 {
 public:
-    EntityId() = default;
+    EntityId() : id(""){};
     EntityId(const std::string &id) : id(id) {}
 
     const std::string &get() const
     {
         return id;
+    }
+
+    const bool isDefined() const
+    {
+        return !id.empty();
     }
 
     bool operator==(const Derived &other) const
