@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/usr/include",
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu/c++/9",
+        "/usr/include/x86_64-linux-gnu"
+      ],
+      "defines": [],
+      "compilerPath": "/home/linuxbrew/.linuxbrew/bin/gcc-13",
+      "cStandard": "c17",
+      "cppStandard": "gnu++17",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}
