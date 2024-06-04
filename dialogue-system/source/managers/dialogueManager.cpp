@@ -3,6 +3,7 @@
 #include "../entities/character.h"
 #include "../entities/response.h"
 #include "../entities/collection.h"
+
 #include "./dialogueManager.h"
 
 DialogueManager::DialogueManager(
@@ -16,8 +17,8 @@ DialogueManager::DialogueManager(
 
 void DialogueManager::startDialogue(DialogueId dialogueId)
 {
-    Dialogue &dialogue = this->dialogues.getById(dialogueId);
-    Character &character = this->characters.getById(dialogue.getSpeakerId());
+    Dialogue dialogue = this->dialogues.getById(dialogueId);
+    Character character = this->characters.getById(dialogue.getSpeakerId());
 
     this->controller.write("[" + character.getName() + "]: " + dialogue.getText());
     this->controller.write("");
@@ -27,18 +28,22 @@ void DialogueManager::startDialogue(DialogueId dialogueId)
         return;
     }
 
-    std::vector<Response &> responses = this->getResponses(dialogueId);
+    this->controller.wait(1000);
 
-    Response &response = this->getUserResponse(responses);
+    std::vector<Response> responses = this->getResponses(dialogueId);
+
+    Response response = this->getUserResponse(responses);
 
     this->controller.write("");
     this->controller.write("[you]: " + response.getText());
     this->controller.write("");
 
+    this->controller.wait(1000);
+
     this->startDialogue(response.getDialogueId());
 }
 
-std::vector<Response &> DialogueManager::getResponses(DialogueId dialogueId)
+std::vector<Response> DialogueManager::getResponses(DialogueId dialogueId)
 {
     Dialogue dialogue = this->dialogues.getById(dialogueId);
     auto responses = this->responses.getByIds(dialogue.getResponseIds());
@@ -47,19 +52,24 @@ std::vector<Response &> DialogueManager::getResponses(DialogueId dialogueId)
 
 void DialogueManager::speakToCharacter(CharacterId characterId)
 {
-    Character &character = this->characters.getById(characterId);
-    Dialogue &dialogue = this->dialogues.getById(character.getConversationStartDialogueId());
+    Character character = this->characters.getById(characterId);
+
+    this->controller.write("You are speaking to " + character.getName());
+
+    DialogueManager::startDialogue(character.getConversationStartDialogueId());
 }
 
-Response &DialogueManager::getUserResponse(std::vector<Response &> responses)
+Response DialogueManager::getUserResponse(std::vector<Response> responses)
 {
+    this->controller.write("Choose a response:");
+
     for (int i = 0; i < responses.size(); i++)
     {
-        Response &response = responses[i];
+        Response response = responses[i];
         this->controller.write(std::to_string(i + 1) + ". " + response.getText());
     }
 
-    this->controller.write("Choose a response:");
+    this->controller.write("");
 
     std::string response = this->controller.read();
 

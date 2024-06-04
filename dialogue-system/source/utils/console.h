@@ -15,6 +15,8 @@ public:
 
     static void WriteLine();
 
+    static void Wait(int ms);
+
     static std::string Read(int size);
 };
 

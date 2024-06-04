@@ -4,17 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "./id.h"
+#include "./dialogueId.h"
 #include "./character.h"
 #include "./response.h"
-
-// opaque ID type
-
-class DialogueId : public EntityId<DialogueId>
-{
-public:
-    explicit DialogueId(const std::string &id);
-};
 
 // entity
 
@@ -28,7 +20,7 @@ private:
     bool isEnd;
 
 public:
-    Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, std::vector<ResponseId> responses = std::vector<ResponseId>(), bool isEnd = false);
+    Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, std::vector<ResponseId> responses = std::vector<ResponseId>());
 
     // accessors
     DialogueId getId();

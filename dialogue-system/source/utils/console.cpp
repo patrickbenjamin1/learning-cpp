@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 
 #include "console.h"
 
@@ -30,4 +31,9 @@ std::string Console::Read(int size)
 
     std::string result(buffer);
     return result;
+}
+
+void Console::Wait(int ms)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }

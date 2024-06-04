@@ -6,8 +6,10 @@
 class ConsoleController : public Controller
 {
 public:
+    ConsoleController();
     void write(std::string text) override;
     std::string read() override;
+    void wait(int ms) override;
 };
 
 #endif // CONSOLE_CONTROLLER_DEF

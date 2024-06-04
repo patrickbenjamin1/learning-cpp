@@ -1,8 +1,8 @@
 #include "./dialogue.h"
 #include "./character.h"
 
-Dialogue::Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, std::vector<ResponseId> responses, bool isEnd)
-    : id(id), text(text), speakerId(speakerId), responses(responses), isEnd(isEnd)
+Dialogue::Dialogue(const DialogueId id, const std::string text, CharacterId speakerId, std::vector<ResponseId> responses)
+    : id(id), text(text), speakerId(speakerId), responses(responses)
 {
 }
 
@@ -38,5 +38,5 @@ std::vector<ResponseId> Dialogue::getResponseIds()
 
 bool Dialogue::getIsEnd()
 {
-    return this->isEnd;
+    return this->responses.size() == 0;
 }

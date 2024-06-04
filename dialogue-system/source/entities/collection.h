@@ -17,12 +17,38 @@ private:
     std::vector<T> entities;
 
 public:
-    Collection() {}
-    Collection(std::vector<T> entities) : entities(entities) {}
+    Collection(){};
+    Collection(std::vector<T> entities) : entities(entities){};
 
     // accessors
-    T getById(IdDerived id) const;
-    std::vector<T &> getByIds(std::vector<IdDerived> ids) const;
+
+    // @todo - return by reference
+    T getById(IdDerived id)
+    {
+        for (T entity : entities)
+        {
+            if (entity.getId() == id)
+            {
+                return entity;
+            }
+        }
+
+        throw "Entity not found";
+    }
+
+    // @todo - return by reference
+    std::vector<T> getByIds(std::vector<IdDerived> ids)
+    {
+        std::vector<T> foundEntities;
+
+        for (IdDerived id : ids)
+        {
+            T entity = this->getById(id);
+            foundEntities.push_back(entity);
+        }
+
+        return foundEntities;
+    };
 };
 
 #endif

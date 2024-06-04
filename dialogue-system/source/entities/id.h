@@ -8,7 +8,8 @@ template <typename Derived>
 class EntityId
 {
 public:
-    explicit EntityId(const std::string &id) : id(id) {}
+    EntityId() = default;
+    EntityId(const std::string &id) : id(id) {}
 
     const std::string &get() const
     {

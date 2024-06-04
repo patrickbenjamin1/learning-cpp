@@ -3,8 +3,11 @@
 
 #include <vector>
 
+#include "../entities/dialogueId.h"
 #include "../entities/dialogue.h"
+#include "../entities/characterId.h"
 #include "../entities/character.h"
+#include "../entities/responseId.h"
 #include "../entities/response.h"
 #include "../entities/collection.h"
 #include "../controllers/controller.h"
@@ -22,9 +25,9 @@ public:
 
     // actions
     void startDialogue(DialogueId dialogueId);
-    std::vector<Response &> getResponses(DialogueId dialogueId);
+    std::vector<Response> getResponses(DialogueId dialogueId);
     void speakToCharacter(CharacterId characterId);
-    Response &getUserResponse(std::vector<Response &> responses);
+    Response getUserResponse(std::vector<Response> responses);
 };
 
 #endif // DIALOGUE_MANAGER_DEF

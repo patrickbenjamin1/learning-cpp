@@ -3,16 +3,8 @@
 
 #include <string>
 
-#include "./id.h"
+#include "./characterId.h"
 #include "./dialogue.h"
-
-// opaque ID type
-
-class CharacterId : public EntityId<CharacterId>
-{
-public:
-    explicit CharacterId(const std::string &id);
-};
 
 // entity
 

@@ -3,16 +3,9 @@
 
 #include <string>
 
-#include "./id.h"
+#include "./responseId.h"
+#include "./dialogueId.h"
 #include "./dialogue.h"
-
-// opaque ID type
-
-class ResponseId : public EntityId<ResponseId>
-{
-public:
-    explicit ResponseId(const std::string &id);
-};
 
 // entity
 
